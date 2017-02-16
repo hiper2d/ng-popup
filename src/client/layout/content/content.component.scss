@@ -1,0 +1,22 @@
+@import "../../vars";
+
+$button-width: 200px;
+$button-height: 34px;
+
+:host {
+  left: 50%;
+  margin: (-$button-height/2) 0 0 (-$button-width/2);
+  position: absolute;
+  top: 50%;
+  width: $button-width;
+}
+
+button {
+  background-color: #636262;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  height: 34$button-height;
+  line-height: 34px;
+  width: 100%;
+}
