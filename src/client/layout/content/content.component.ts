@@ -1,5 +1,7 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {PopupService} from "../../service/popup.service";
+import {PopupData} from "../../model/popup-data.model";
+import {ModalPopupComponent} from "../../popup/dynamic/modal-popup.component";
 
 @Component({
     selector: '.content',
@@ -13,6 +15,7 @@ export class ContentComponent implements OnInit {
     ngOnInit() { }
     
     okIClicked() {
-        this._popupService.showStatus = true;
+        let data: PopupData = {component: ModalPopupComponent, input: 'test param'};
+        this._popupService.openPopup(data);
     }
 }
