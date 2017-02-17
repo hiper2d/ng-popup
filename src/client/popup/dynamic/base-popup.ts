@@ -1,5 +1,4 @@
 export class BasePopup {
     input: any;
-
-    constructor() { }
+    contentComponent: any;
 }

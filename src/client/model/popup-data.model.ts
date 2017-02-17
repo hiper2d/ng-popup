@@ -1,4 +1,5 @@
 export class PopupData {
-    component: any;
+    layoutComponent: any;
+    contentComponent: any;
     input: any;
 }

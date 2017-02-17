@@ -1,5 +1,10 @@
 import {
-    AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit,
+    AfterViewInit,
+    Component,
+    ComponentFactoryResolver,
+    ComponentRef,
+    OnDestroy,
+    OnInit,
     ViewChild
 } from "@angular/core";
 import {PopupService} from "../service/popup.service";
@@ -33,8 +38,9 @@ export class PopupComponent implements AfterViewInit, OnInit, OnDestroy {
             let viewContainerRef = this.popupContentHost.viewContainerRef;
             viewContainerRef.clear();
             if (data) {
-                let componentFactory = this._componentFactoryResolver.resolveComponentFactory<BasePopup>(data.component);
+                let componentFactory = this._componentFactoryResolver.resolveComponentFactory<BasePopup>(data.layoutComponent);
                 let componentRef: ComponentRef<BasePopup> = viewContainerRef.createComponent<BasePopup>(componentFactory);
+                componentRef.instance.contentComponent = data.contentComponent;
                 componentRef.instance.input = data.input;
             }
         });
