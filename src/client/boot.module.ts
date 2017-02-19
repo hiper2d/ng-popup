@@ -3,7 +3,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {BootRoutingModule} from "./boot.routing";
 import {LayoutComponent} from "./layout/layout.component";
 import {ContentComponent} from "./layout/content/content.component";
-import {PopupService} from "./service/popup.service";
+import {PopupService} from "./popup/service/popup.service";
 import {PopupModule} from "./popup/popup.module";
 
 @NgModule({

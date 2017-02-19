@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {PopupService} from "../../service/popup.service";
-import {PopupData} from "../../model/popup-data.model";
+import {PopupService} from "../../popup/service/popup.service";
+import {PopupData} from "../../popup/model/popup-data.model";
 import {ModalPopupComponent} from "../../popup/dynamic/modal/modal-popup.component";
 import {StandardPopupContentComponent} from "../../popup/dynamic/content/standard/standard-popup-content.component";
 
@@ -16,7 +16,11 @@ export class ContentComponent implements OnInit {
     ngOnInit() { }
     
     okIClicked() {
-        let data: PopupData = {layoutComponent: ModalPopupComponent, contentComponent: StandardPopupContentComponent, input: 'test param'};
+        let data: PopupData = {
+            layoutComponent: ModalPopupComponent,
+            contentComponent: StandardPopupContentComponent,
+            input: 'test param'
+        };
         this._popupService.openPopup(data);
     }
 }
