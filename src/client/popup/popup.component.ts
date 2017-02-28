@@ -11,6 +11,7 @@ import {PopupService} from "./service/popup.service";
 import {Subscription} from "rxjs";
 import {PopupDirective} from "./directives/popup.directive";
 import {PopupData} from "./model/popup-data.model";
+import {BasePopup} from "./dynamic/popup.base-component";
 
 @Component({
     selector: '.h2d-popup',
@@ -18,9 +19,7 @@ import {PopupData} from "./model/popup-data.model";
     styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements AfterViewInit, OnInit, OnDestroy {
-
     @ViewChild(PopupDirective) popupContentHost: PopupDirective;
-
     private _subscriptionShown: Subscription;
 
     constructor(
@@ -37,12 +36,9 @@ export class PopupComponent implements AfterViewInit, OnInit, OnDestroy {
             let viewContainerRef = this.popupContentHost.viewContainerRef;
             viewContainerRef.clear();
             if (data) {
-                let componentFactory = this._componentFactoryResolver.resolveComponentFactory<PopupData>(data.layoutComponent);
-                let componentRef: ComponentRef<PopupData> = viewContainerRef.createComponent<PopupData>(componentFactory);
-                componentRef.instance.contentComponent = data.contentComponent;
-                componentRef.instance.input = data.input;
-                componentRef.instance.x = data.x;
-                componentRef.instance.y = data.y;
+                let componentFactory = this._componentFactoryResolver.resolveComponentFactory<BasePopup>(data.layoutComponent);
+                let componentRef: ComponentRef<BasePopup> = viewContainerRef.createComponent<BasePopup>(componentFactory);
+                componentRef.instance.data = data;
             }
         });
     }

@@ -5,13 +5,20 @@ import {PopupData} from "../model/popup-data.model";
 @Injectable()
 export class PopupService {
 	private _popupSubject = new BehaviorSubject<PopupData>(null);
+	private _isShown = false;
 	popupObservable: Observable<PopupData> = this._popupSubject.asObservable();
 
 	openPopup(data: PopupData) {
-		this._popupSubject.next(data);
+		if (!this._isShown) {
+			this._popupSubject.next(data);
+			this._isShown = true;
+		}
 	}
 
 	closePopup() {
-		this._popupSubject.next(null);
+		if (this._isShown) {
+			this._popupSubject.next(null);
+			this._isShown = false;
+		}
 	}
 }

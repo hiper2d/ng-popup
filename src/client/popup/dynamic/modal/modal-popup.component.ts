@@ -1,50 +1,48 @@
-import {
-    AfterViewInit, Component, ComponentFactoryResolver, HostListener, ViewChild, ElementRef,
-    OnInit
-} from "@angular/core";
-import {PopupDirective} from "../../directives/popup.directive";
+import {Component, HostListener, ElementRef, OnInit} from "@angular/core";
 import {PopupService} from "../../service/popup.service";
-import {PopupData} from "../../model/popup-data.model";
+import {setTimeout} from "timers";
+import {BasePopup} from "../popup.base-component";
 
 @Component({
     selector: '.h2d-modal-popup',
     templateUrl: './modal-popup.component.html',
     styleUrls: ['./modal-popup.component.scss']
 })
-export class ModalPopupComponent extends PopupData implements OnInit, AfterViewInit {
-
-    @ViewChild(PopupDirective) popupContentHost: PopupDirective;
-    @ViewChild('popupwindow') popupwindow: ElementRef;
+export class ModalPopupComponent extends BasePopup implements OnInit {
+    private shown = false;
 
     constructor(
-        private _popupService: PopupService,
-        private _componentFactoryResolver: ComponentFactoryResolver
+        private _element: ElementRef,
+        private _popupService: PopupService
     ) {
         super();
     }
     
     ngOnInit(): void {
-        if (!this.x) {
-            this.x = window.innerWidth/2 - this.popupwindow.nativeElement.offsetWidth/2;
+        if (!this.data.x) {
+            this.data.x = window.innerWidth/2 - this._element.nativeElement.offsetWidth/2;
         }
-        if (!this.y) {
-            this.y = window.innerHeight/2 - this.popupwindow.nativeElement.offsetHeight/2;
+        if (!this.data.y) {
+            this.data.y = window.innerHeight/2 - this._element.nativeElement.offsetHeight/2;
         }
+        this._element.nativeElement.x = this.data.x;
+        this._element.nativeElement.y = this.data.y;
     }
     
-    ngAfterViewInit(): void  {
-        let viewContainerRef = this.popupContentHost.viewContainerRef;
-        viewContainerRef.clear();
-        let componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.contentComponent);
-        viewContainerRef.createComponent(componentFactory);
-    }
-
-    clickOnPopup(): void  {
+    @HostListener('click')
+    onClick() {
         event.stopPropagation();
     }
-
-    @HostListener('click', ['$event.target'])
-    onClick(target: HTMLInputElement) {
-        this._popupService.closePopup();
+    
+    @HostListener('document:click')
+    onGlobalClick() {
+        // HostListener catches click event bubbled from the original source right after ngAfterViewInit and closes popup.
+        // Workaround: not to trigger closePopup first 1 millisecond.
+        if (this.shown) {
+            console.log('close');
+            this._popupService.closePopup();
+        } else {
+            setTimeout(() => { this.shown = true; }, 1);
+        }
     }
 }
