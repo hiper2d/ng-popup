@@ -16,6 +16,7 @@ module.exports = {
 
     entry: {
         'polyfills': './src/client/polyfills.ts',
+        'vendors': './src/client/vendors.ts',
         'boot': './src/client/boot.ts'
     },
 
@@ -73,7 +74,7 @@ module.exports = {
         new ExtractTextPlugin('[name].css'),
 
         new CommonsChunkPlugin({
-            name: ['boot', 'polyfills']
+            name: ['boot', 'vendors', 'polyfills']
         }),
 
         new HtmlWebpackPlugin({
