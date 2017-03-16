@@ -16,6 +16,7 @@ module.exports = {
 
     entry: {
         'polyfills': './src/client/polyfills.ts',
+        'vendors': './src/client/vendors.ts',
         'boot': './src/client/boot.ts'
     },
 
@@ -28,9 +29,9 @@ module.exports = {
             {
                 test: /\.ts$/,
                 loaders: [{
-                        loader: 'awesome-typescript-loader',
-                        options: { configFileName: root('tsconfig.json') }
-                    } , 'angular2-template-loader'
+                    loader: 'awesome-typescript-loader',
+                    options: {configFileName: root('tsconfig.json')}
+                }, 'angular2-template-loader'
                 ]
             },
             {
@@ -49,7 +50,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 include: root('src', 'public'),
-                loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap' })
+                loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap'})
             }
         ]
     },
@@ -73,7 +74,7 @@ module.exports = {
         new ExtractTextPlugin('[name].css'),
 
         new CommonsChunkPlugin({
-            name: ['boot', 'polyfills']
+            name: ['boot', 'vendors', 'polyfills']
         }),
 
         new HtmlWebpackPlugin({
@@ -84,6 +85,6 @@ module.exports = {
 
     devServer: {
         historyApiFallback: true,
-        watchOptions: { aggregateTimeout: 300, poll: 1000 }
+        watchOptions: {aggregateTimeout: 300, poll: 1000}
     }
 };

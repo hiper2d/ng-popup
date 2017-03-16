@@ -3,11 +3,12 @@ import {Routes, RouterModule} from "@angular/router";
 import {ContentComponent} from "./layout/content/content.component";
 
 const routes: Routes = [
-  {path: '', component: ContentComponent}
+	{path: '', component: ContentComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule],
 })
-export class BootRoutingModule { }
+export class BootRoutingModule {
+}

@@ -7,16 +7,17 @@ import {PopupService} from "./popup/service/popup.service";
 import {PopupModule} from "./popup/popup.module";
 
 @NgModule({
-    imports: [
-        BootRoutingModule,
-        BrowserModule,
-        PopupModule
-    ],
-    declarations: [
-        ContentComponent,
-        LayoutComponent
-    ],
-    providers: [PopupService],
-    bootstrap: [LayoutComponent]
+	imports: [
+		BootRoutingModule,
+		BrowserModule,
+		PopupModule
+	],
+	declarations: [
+		ContentComponent,
+		LayoutComponent
+	],
+	providers: [PopupService],
+	bootstrap: [LayoutComponent]
 })
-export class BootModule { }
+export class BootModule {
+}

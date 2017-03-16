@@ -2,18 +2,22 @@ import {NgModule} from "@angular/core";
 import {PopupComponent} from "./popup.component";
 import {CommonModule} from "@angular/common";
 import {PopupDirective} from "./directives/popup.directive";
-import {ModalPopupComponent} from "./dynamic/modal/modal-popup.component";
+import {InfoPopupComponent} from "./dynamic/info/info-popup.component";
+import {NonblockingPopupComponent} from "./dynamic/modal/nonblocking-popup.component";
 
 @NgModule({
-    imports: [CommonModule],
-    exports: [PopupComponent],
-    declarations: [
-        ModalPopupComponent,
-        PopupComponent,
-        PopupDirective
-    ],
-    entryComponents: [
-        ModalPopupComponent
-    ]
+	imports: [CommonModule],
+	exports: [PopupComponent],
+	declarations: [
+		InfoPopupComponent,
+		NonblockingPopupComponent,
+		PopupComponent,
+		PopupDirective
+	],
+	entryComponents: [
+		InfoPopupComponent,
+		NonblockingPopupComponent
+	]
 })
-export class PopupModule { }
+export class PopupModule {
+}
