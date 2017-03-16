@@ -21,4 +21,8 @@ export class PopupService {
 			this._isShown = false;
 		}
 	}
+
+	get isShown() {
+		return this._isShown;
+	}
 }
