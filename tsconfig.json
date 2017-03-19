@@ -10,11 +10,19 @@
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "lib": [
-      "es2015",
-      "dom"
+      "dom",
+      "es6"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
     ],
     "types": [
+      "core-js",
       "node"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist"
     ]
   },
   "compileOnSave": false,

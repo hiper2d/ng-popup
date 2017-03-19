@@ -21,17 +21,19 @@ module.exports = {
     },
 
     resolve: {
-        extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts', '.scss'],
+        modules: [root('src'), root('node_modules')]
     },
 
     module: {
         rules: [
             {
                 test: /\.ts$/,
-                loaders: [{
-                    loader: 'awesome-typescript-loader',
-                    options: {configFileName: root('tsconfig.json')}
-                }, 'angular2-template-loader'
+                loaders: [
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: {configFileName: root('tsconfig.json')}
+                    }, 'angular2-template-loader'
                 ]
             },
             {
@@ -39,18 +41,22 @@ module.exports = {
                 loader: 'html-loader'
             },
             {
-                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot)$/,
-                loader: 'file-loader?name=[name].[hash].[ext]'
-            },
-            {
-                test: /\.scss$/,
+                test: /\.scss$/, //compiling loading component styles in stylesUrls
                 include: root('src', 'client'),
-                loader: 'raw-loader!sass-loader'
+                loader: 'to-string-loader!css-loader!sass-loader'
             },
             {
-                test: /\.css$/,
+                test: /\.scss$/, //compiling and loading global styles
                 include: root('src', 'public'),
-                loader: ExtractTextPlugin.extract({fallbackLoader: 'style-loader', loader: 'css-loader?sourceMap'})
+                loader: 'css-loader!sass-loader'
+            },
+            {
+                test: /\.css$/, //loading global styles
+                include: root('src', 'public'),
+                loader: ExtractTextPlugin.extract({
+                    fallbackLoader: 'style-loader',
+                    loader: 'css-loader?sourceMap'
+                })
             }
         ]
     },
