@@ -1,0 +1,32 @@
+:host {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.modal {
+  background: #fff;
+  border: 1px solid black;
+  height: 80%;
+  padding: 20px;
+  pointer-events: auto;
+  position: absolute;
+  width: 80%;
+
+  button {
+    background-color: #636262;
+    border: none;
+    bottom: 20px;
+    color: #fff;
+    font-size: 14px;
+    height: 40px;
+    line-height: 34px;
+    margin-bottom: 10px;
+    right: 30px;
+    position: absolute;
+    width: 100px;
+  }
+}

@@ -1,4 +1,4 @@
-import {Component, HostListener, ElementRef, AfterViewChecked} from "@angular/core";
+import {AfterViewChecked, Component, ElementRef, HostListener} from "@angular/core";
 import {PopupService} from "../../service/popup.service";
 import {setTimeout} from "timers";
 import {BasePopup} from "../popup.base-component";

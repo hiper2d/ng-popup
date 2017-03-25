@@ -1,8 +1,9 @@
 import {Component, OnInit, ElementRef} from "@angular/core";
 import {PopupService} from "../../popup/service/popup.service";
 import {PopupData} from "../../popup/model/popup-data.model";
-import {NonblockingPopupComponent} from "../../popup/dynamic/modal/nonblocking-popup.component";
+import {NonblockingPopupComponent} from "../../popup/dynamic/nonblocking/nonblocking-popup.component";
 import {InfoPopupComponent} from "../../popup/dynamic/info/info-popup.component";
+import {ModalDialogComponent} from "../../popup/dynamic/modal/modal-dialog.component";
 
 @Component({
 	selector: '.content',
@@ -18,7 +19,7 @@ export class ContentComponent implements OnInit {
 	ngOnInit() {
 	}
 	
-	okIClicked(event: MouseEvent) {
+	nonblockingClick() {
 		let data: PopupData = {
 			layoutComponent: NonblockingPopupComponent,
 			y: 50,
@@ -27,9 +28,17 @@ export class ContentComponent implements OnInit {
 		this._popupService.openPopup(data);
 	}
 	
-	okIClicked2(event: MouseEvent) {
+	infoClicked() {
 		let data: PopupData = {
 			layoutComponent: InfoPopupComponent,
+			input: 'test param'
+		};
+		this._popupService.openPopup(data);
+	}
+	
+	dialogClicked() {
+		let data: PopupData = {
+			layoutComponent: ModalDialogComponent,
 			input: 'test param'
 		};
 		this._popupService.openPopup(data);
